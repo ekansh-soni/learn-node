@@ -1,13 +1,9 @@
 const express = require("express")
-
+const {handleGetAllUsers, handleGetUserById} = require("../controllers/user")
 const router = express.Router()
 
 
-router.get("/",async(req,res)=>{
-    const dbUsers = await User.find({});
-
-    return res.json(dbUsers)
-})
+router.get("/", handleGetAllUsers)
 
 // router.get("/", async (req,res)=>{
 //     const dbUsers = await User.find({});
@@ -20,11 +16,7 @@ router.get("/",async(req,res)=>{
 //     res.send(html);
 // })
 
-router.get("/:id", (req, res)=>{
-    const id = Number(req.params.id)    
-    const user = users.find((user)=> user.id === id)
-    return res.json(user)
-})
+router.get("/:id", handleGetUserById)
 
 
 router.post("/",async (req, res)=>{
